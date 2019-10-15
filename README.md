@@ -1,6 +1,6 @@
 # Design-by-Contract
 
-<h2>**Introduction**</h2>
+<h2>Introduction</h2>
 
 Consider an Account class. It should have two methods:
 
