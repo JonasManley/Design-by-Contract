@@ -16,7 +16,11 @@ namespace Desgin_by_Contract
            
         }
 
-
+        /// <summary>
+        /// Allow user to deposit money into their accounts and the balance will incease 
+        /// </summary>
+        /// <param name="amount">the amount of money the user would like to deposit</param>
+        /// <returns></returns>
         public double Deposit(double amount)
         {
             var value = amount;
@@ -24,11 +28,17 @@ namespace Desgin_by_Contract
             Contract.Ensures(Contract.Result<double>() >= 0);
             Contract.EnsuresOnThrow<ArgumentException>(Contract.OldValue<double>(value) == amount);
 
+            if (amount > _balance) throw new Exception("ERROR! amount exceeds the balance, not possible...");
             var NewBalance =_balance + amount;
 
             return NewBalance;
         }
 
+        /// <summary>
+        /// Allow user to withdraw money from their accounts and the balance will deincease with the descired amount
+        /// </summary>
+        /// <param name="amount">the amount of money the user would like to withdraw</param>
+        /// <returns></returns>
         public double Withdraw(double amount)
         {
             var value = amount;
@@ -37,6 +47,7 @@ namespace Desgin_by_Contract
             Contract.Ensures(Contract.Result<double>() >= 0);
             Contract.EnsuresOnThrow<ArgumentException>(Contract.OldValue<double>(value) == amount);
 
+            if (amount < 0) throw new Exception("ERROR! amount cannot be negative, please try agian...");
             var NewBalance = _balance - amount;
 
             return NewBalance;
